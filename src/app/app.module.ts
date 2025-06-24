@@ -9,6 +9,7 @@ import { NgxChessBoardModule } from 'ngx-chess-board';
 import { OnlineModeComponent } from './online-mode/online-mode.component';
 import { FormsModule } from '@angular/forms';
 import { HomeModule } from './features/home/home.module';
+import { ComponentsModule } from './shared/components/components.module';
 
 @NgModule({
   declarations: [AppComponent, OnlineModeComponent],
@@ -18,6 +19,7 @@ import { HomeModule } from './features/home/home.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     FormsModule,
+    ComponentsModule,
     HomeModule,
   ],
   providers: [],

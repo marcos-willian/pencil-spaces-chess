@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MoveEvent } from './chess-game-events';
+import { MoveEvent } from '../models/chess-game-events';
 import { Move } from '../../../../shared/domain/models/move.model';
 
 @Injectable({

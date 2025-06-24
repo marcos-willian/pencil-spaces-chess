@@ -1,5 +1,9 @@
 import { ElementRef, Injectable, signal } from '@angular/core';
-import { MoveEvent, ResetEvent, SetPlayerEvent } from './chess-game-events';
+import {
+  MoveEvent,
+  ResetEvent,
+  SetPlayerEvent,
+} from '../models/chess-game-events';
 import { Player } from '../../../../shared/domain/models/player.model';
 import { BehaviorSubject } from 'rxjs';
 import { StorageService } from './storage.service';
@@ -36,7 +40,7 @@ export class MainService {
     this._white?.postMessage(new SetPlayerEvent(Player.white));
     const lastMoveMade = this.storageService.getLastMove();
     if (lastMoveMade) {
-      this._white?.postMessage(lastMoveMade);
+      this._white?.postMessage(new MoveEvent(lastMoveMade));
     }
   }
 
@@ -44,7 +48,7 @@ export class MainService {
     this._black?.postMessage(new SetPlayerEvent(Player.black));
     const lastMoveMade = this.storageService.getLastMove();
     if (lastMoveMade) {
-      this._black?.postMessage(lastMoveMade);
+      this._black?.postMessage(new MoveEvent(lastMoveMade));
     }
   }
 

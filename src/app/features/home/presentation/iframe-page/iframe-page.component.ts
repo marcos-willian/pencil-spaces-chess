@@ -7,7 +7,8 @@ import {
   MoveEvent,
   ResetEvent,
   SetPlayerEvent,
-} from '../../domain/services/chess-game-events';
+} from '../../domain/models/chess-game-events';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-iframe-page',
@@ -18,9 +19,14 @@ export class IframePageComponent {
   @ViewChild('board') board!: ChessBoardComponent;
   player: Player = Player.black;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
+    // Check if happened a direct access by browser and redirect to mainpage
+    if (window.top === window.self) {
+      this.router.navigate(['/mainpage']);
+    }
+
     //As this service is used jus for ui updates, we can handle eventes here
     window.addEventListener('message', (event) => {
       switch (event.data.type) {
