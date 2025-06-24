@@ -4,6 +4,6 @@
   <button (click)="joinGame()">Join Game</button>
 </div>
 <div *ngIf="gameId">
-  <ngx-chess-board #board (moveChange)="moveMade($event)"></ngx-chess-board>
+  <!-- <app-chess-board #board (onMove)="moveMade($event)"></app-chess-board> -->
   <p>Game code: {{ gameId }}</p>
 </div>

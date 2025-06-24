@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainPageComponent } from './main-page/main-page.component';
-import { IframePageComponent } from './iframe-page/iframe-page.component';
+import { MainPageComponent } from './features/home/presentation/main-page/main-page.component';
 import { OnlineModeComponent } from './online-mode/online-mode.component';
+import { IframePageComponent } from './features/home/presentation/iframe-page/iframe-page.component';
 
 const routes: Routes = [
   { path: 'mainpage', component: MainPageComponent },
