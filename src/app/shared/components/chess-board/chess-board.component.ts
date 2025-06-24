@@ -16,12 +16,15 @@ export class ChessBoardComponent {
   @ViewChild('board') board!: NgxChessBoardComponent;
 
   player: Player = Player.white;
+  myTurn = false;
 
   reset() {
     this.board.reset();
     this.board.darkDisabled = true;
     this.board.lightDisabled = false;
+    this.myTurn = true;
     if (this.player === Player.black) {
+      this.myTurn = false;
       this.board.reverse();
     }
   }
@@ -34,19 +37,23 @@ export class ChessBoardComponent {
       this.board.lightDisabled = true;
     } else {
       this.board.darkDisabled = true;
+      this.myTurn = true;
     }
   }
 
-  updateOponentMove(move: Move) {
-    this.takeTurn();
+  updateMove(lastMove: Move) {
+    if (lastMove.player !== this.player) {
+      this.takeTurn();
+    }
 
-    this.board.setFEN(move.fen);
+    this.board.setFEN(lastMove.fen);
     if (this.player === Player.black) {
       this.board.reverse();
     }
   }
 
   private takeTurn() {
+    this.myTurn = true;
     if (this.player === Player.white) {
       this.board.lightDisabled = false;
       return;
@@ -55,6 +62,7 @@ export class ChessBoardComponent {
   }
 
   private passTurn() {
+    this.myTurn = false;
     if (this.player === Player.white) {
       this.board.lightDisabled = true;
       return;

@@ -28,6 +28,10 @@ export class MainPageComponent {
     });
   }
 
+  startNewGame() {
+    this.mainPageService.reset();
+  }
+
   ngOnDestroy() {
     this.subscription?.unsubscribe();
   }

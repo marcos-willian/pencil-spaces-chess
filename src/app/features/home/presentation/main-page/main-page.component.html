@@ -1,7 +1,9 @@
-<div class="layout-container ">
-  <h1>Chess Game</h1>
-  <div class="boards-container">
+<div class="d-flex flex-column align-items-center">
+  <h1 class="mt-5">Chess Game</h1>
+  <div class="d-flex flex-inline align-items-center" style="padding-top: 100px;">
     <iframe src="/iframepage" class="iframe" #white (load)="onWhiteLoaded()"></iframe>
     <iframe src="/iframepage" class="iframe" #black (load)="onBlackLoaded()"></iframe>
   </div>
+  <button class="btn btn-info mt-5" (click)="startNewGame()">Start New Game</button>
+
 </div>

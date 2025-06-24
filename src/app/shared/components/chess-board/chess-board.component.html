@@ -1,8 +1,9 @@
-<div style=" justify-content: center; ">
-    <h2>Player {{ player }}</h2>
-    <ngx-chess-board 
-        #board  
-        [size]="400"
-        (moveChange) = "moveChange($event)">
+<div class="d-flex flex-column align-items-center">
+    <h2 class="mb-2">Player {{ player }}</h2>
+    <ngx-chess-board #board [size]="400" (moveChange)="moveChange($event)" [style.opacity]="myTurn ? 1 : 0.7">
     </ngx-chess-board>
+    <div class="mt-2 container-sm bg-success text-center rounded" style="width: 50%; --bs-bg-opacity: .7"
+        *ngIf="myTurn">
+        {{ player}}'s turn
+    </div>
 </div>
