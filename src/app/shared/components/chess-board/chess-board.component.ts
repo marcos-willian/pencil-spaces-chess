@@ -10,7 +10,7 @@ import { Move } from '../../domain/models/move.model';
 @Component({
   selector: 'app-chess-board',
   templateUrl: './chess-board.component.html',
-  styleUrls: ['./chess-board.component.css'],
+  styleUrls: [],
 })
 export class ChessBoardComponent {
   @ViewChild('board') board!: NgxChessBoardComponent;

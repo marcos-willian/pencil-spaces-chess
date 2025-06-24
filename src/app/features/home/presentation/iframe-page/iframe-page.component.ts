@@ -12,12 +12,12 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-iframe-page',
-  templateUrl: './iframe-page.component.html',
-  styleUrls: ['./iframe-page.component.css'],
+  template: `<app-chess-board #board (onMove)="onMove($event)">
+  </app-chess-board>`,
+  styleUrls: [],
 })
 export class IframePageComponent {
   @ViewChild('board') board!: ChessBoardComponent;
-  player: Player = Player.black;
 
   constructor(private router: Router) {}
 
@@ -33,7 +33,7 @@ export class IframePageComponent {
         case SetPlayerEvent.name:
           return this.board.setPlayer((<SetPlayerEvent>event.data).player);
         case MoveEvent.name:
-          return this.board.updateOponentMove((<MoveEvent>event.data).move);
+          return this.board.updateMove((<MoveEvent>event.data).move);
         case ResetEvent.name:
           return this.board.reset();
         default:
