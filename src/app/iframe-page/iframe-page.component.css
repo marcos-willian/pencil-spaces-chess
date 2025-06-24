@@ -1,0 +1,9 @@
+.board-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100; /* full screen height */
+  width: 100;  /* full screen width */
+  background-color: #ee2424; /* optional */
+  size: 300;
+}
