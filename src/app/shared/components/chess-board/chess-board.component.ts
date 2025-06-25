@@ -29,7 +29,7 @@ export class ChessBoardComponent {
     }
   }
 
-  setPlayer(player: Player) {
+  initWithPlayer(player: Player) {
     this.player = player;
 
     if (this.player === Player.black) {
@@ -44,6 +44,8 @@ export class ChessBoardComponent {
   updateMove(lastMove: Move) {
     if (lastMove.player !== this.player) {
       this.takeTurn();
+    } else {
+      this.passTurn();
     }
 
     this.board.setFEN(lastMove.fen);

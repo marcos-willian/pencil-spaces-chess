@@ -1,9 +1,4 @@
-.boards-container {
-  display: flex;
-  justify-content: center; /* horizontal */
-  align-items: center;     /* vertical */
-  padding-top: 100px;   
-}
+
 
 .iframe {
  width: 500px; 

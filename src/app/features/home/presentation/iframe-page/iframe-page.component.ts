@@ -31,7 +31,7 @@ export class IframePageComponent {
     window.addEventListener('message', (event) => {
       switch (event.data.type) {
         case SetPlayerEvent.name:
-          return this.board.setPlayer((<SetPlayerEvent>event.data).player);
+          return this.board.initWithPlayer((<SetPlayerEvent>event.data).player);
         case MoveEvent.name:
           return this.board.updateMove((<MoveEvent>event.data).move);
         case ResetEvent.name:

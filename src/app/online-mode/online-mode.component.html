@@ -1,9 +1,0 @@
-<div *ngIf="!gameId">
-  <button (click)="createGame()">Create New Game</button>
-  <input [(ngModel)]="joinCode" placeholder="Enter game code" />
-  <button (click)="joinGame()">Join Game</button>
-</div>
-<div *ngIf="gameId">
-  <!-- <app-chess-board #board (onMove)="moveMade($event)"></app-chess-board> -->
-  <p>Game code: {{ gameId }}</p>
-</div>

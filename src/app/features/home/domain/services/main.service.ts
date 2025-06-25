@@ -61,6 +61,9 @@ export class MainService {
   moveEvent(moveEvent: any) {
     if (moveEvent.move.checkmate) {
       this._gameStatusSubject.next(moveEvent.move.player);
+      this._white?.postMessage(moveEvent);
+      this._white?.postMessage(moveEvent);
+
       return;
     }
 

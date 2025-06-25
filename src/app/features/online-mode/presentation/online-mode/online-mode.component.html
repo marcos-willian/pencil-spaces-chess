@@ -1,0 +1,12 @@
+<div class="d-flex flex-column align-items-center" style="height:100%;">
+  <h1 class="my-5">Online Chess Game</h1>
+  <div class="d-flex flex-column align-items-center" *ngIf="!gameId">
+    <h2>Join or create a game to play online!</h2>
+    <button class="btn btn-primary mt-5" (click)="createGame()">Create New Game</button>
+    <input class="form-control" style="width: 400px; margin-top: 80px;" [(ngModel)]="joinCode"
+      placeholder="Enter game code" />
+    <button class="btn btn-primary mt-3" (click)="joinGame()">Join Game</button>
+  </div>
+  <app-chess-board #board [hidden]="!gameId" (onMove)="onMove($event)"></app-chess-board>
+  <p [hidden]="!gameId" class="mt-5 fw-bold">Game code: {{ gameId }}</p>
+</div>
