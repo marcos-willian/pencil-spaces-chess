@@ -8,7 +8,7 @@ describe('OnlineModeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [OnlineModeComponent]
+      declarations: [OnlineModeComponent],
     });
     fixture = TestBed.createComponent(OnlineModeComponent);
     component = fixture.componentInstance;
