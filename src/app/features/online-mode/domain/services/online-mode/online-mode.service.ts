@@ -67,7 +67,7 @@ export class OnlineModeService {
 
     if (!gameExists) {
       return this._stateSubject.next(
-        new OnlineModeErrorEvent('Game does not exist')
+        new OnlineModeErrorEvent('Game does not exist!')
       );
     }
 

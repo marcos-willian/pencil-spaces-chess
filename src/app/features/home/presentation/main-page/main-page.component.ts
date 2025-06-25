@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MainService } from '../../domain/services/main/main.service';
 import { Subscription } from 'rxjs';
+import { AlertService } from 'src/app/shared/components/alert/service/alert.service';
 
 @Component({
   selector: 'app-main-page',
@@ -12,7 +13,10 @@ export class MainPageComponent {
   @ViewChild('black') black!: ElementRef<HTMLIFrameElement>;
   private subscription?: Subscription;
 
-  constructor(private mainPageService: MainService) {}
+  constructor(
+    private mainPageService: MainService,
+    private alertService: AlertService
+  ) {}
 
   ngAfterViewInit() {
     window.addEventListener('message', (event) =>
@@ -22,9 +26,18 @@ export class MainPageComponent {
     this.subscription = this.mainPageService.gameStatus$.subscribe((winner) => {
       if (!winner) return;
 
-      if (window.confirm(`${winner} won!! Start new game?`)) {
-        this.mainPageService.reset();
-      }
+      this.alertService.showMessage(
+        `${winner} won!!`,
+        'New Game',
+        () => {
+          this.startNewGame();
+          return true;
+        },
+        'Close',
+        () => {
+          return true;
+        }
+      );
     });
   }
 

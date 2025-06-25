@@ -1,0 +1,16 @@
+.floating-alert {
+  position: fixed;
+  left: 50%;
+  top: 200px;
+  z-index: 1000;
+  
+  height: 200px;
+  width: 300px;
+  animation: fadeInOut 3s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%); }
+  20% { opacity: 1; transform: translateX(-50%); }
+  100% { opacity: 1; transform: translateX(-50%);  }
+}

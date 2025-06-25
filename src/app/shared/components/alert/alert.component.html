@@ -1,0 +1,10 @@
+<div *ngIf="message"
+    class="alert alert-{{ type }} text-center floating-alert d-flex flex-column justify-content-between" role="alert">
+    <h3 class="pt-2"> {{ message }}</h3>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="button" class="btn btn-primary me-md-2" *ngIf="primaryButtonText" (click)="primaryAction()">{{
+            primaryButtonText }}</button>
+        <button type="button" class="btn btn-secondary" *ngIf="secondaryButtonText" (click)="secondaryAction()">{{
+            secondaryButtonText }}</button>
+    </div>
+</div>

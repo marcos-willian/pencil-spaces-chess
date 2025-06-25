@@ -21,6 +21,7 @@ import {
   UpdateGameInfoEvent,
   UpdateMoveEvent,
 } from '../../domain/services/online-mode/online-mode.events';
+import { AlertService } from 'src/app/shared/components/alert/service/alert.service';
 
 @Component({
   selector: 'app-online-mode',
@@ -31,7 +32,11 @@ export class OnlineModeComponent {
   gameId: string | null = null;
   joinCode: string = '';
   subscription: Subscription | null = null;
-  constructor(private service: OnlineModeService, private router: Router) {}
+  constructor(
+    private service: OnlineModeService,
+    private router: Router,
+    private alertService: AlertService
+  ) {}
 
   @HostListener('window:beforeunload', ['$event'])
   handleBeforeUnload(_: BeforeUnloadEvent) {
@@ -67,12 +72,15 @@ export class OnlineModeComponent {
   /// Service event handlers ---------------
   private onError(event: OnlineModeErrorEvent) {
     this.joinCode = '';
-    window.alert(event.error);
-    this.service.endGame();
+    this.alertService.showError(event.error, 'Close', () => {
+      this.service.endGame();
 
-    if (event.exit) {
-      this.router.navigate(['/']);
-    }
+      if (event.exit) {
+        this.router.navigate(['/']);
+      }
+
+      return true;
+    });
   }
 
   private updateGameInfo(event: UpdateGameInfoEvent) {
@@ -87,8 +95,10 @@ export class OnlineModeComponent {
 
   showResult(winner: Player) {
     this.service.endGame();
-    window.alert(`Game Over! ${winner} wins!`);
-    this.router.navigate(['/']);
+    this.alertService.showMessage(`Game Over! ${winner} wins!`, 'Close', () => {
+      this.router.navigate(['/']);
+      return true;
+    });
   }
 
   /// UI event handlers ---------------
