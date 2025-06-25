@@ -20,7 +20,6 @@ import { RealtimeDbRepositoryImpl } from './data/repositories/realtime-db.reposi
   ],
   providers: [
     OnlineModeService,
-
     {
       provide: RealtimeDbRepositoryToken,
       useClass: RealtimeDbRepositoryImpl,

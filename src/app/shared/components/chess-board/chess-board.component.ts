@@ -1,9 +1,5 @@
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import {
-  MoveChange,
-  NgxChessBoardComponent,
-  NgxChessBoardModule,
-} from 'ngx-chess-board';
+import { MoveChange, NgxChessBoardComponent } from 'ngx-chess-board';
 import { Player } from '../../domain/models/player.model';
 import { Move } from '../../domain/models/move.model';
 

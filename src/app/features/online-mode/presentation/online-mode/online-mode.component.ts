@@ -55,13 +55,13 @@ export class OnlineModeComponent {
           this.updateGameInfo(event as UpdateGameInfoEvent);
           return;
         case OnlineModeErrorEvent.name:
-          this.onError(event as OnlineModeErrorEvent);
+          this.onlineModeError(event as OnlineModeErrorEvent);
           return;
         case UpdateMoveEvent.name:
           this.updateMove((event as UpdateMoveEvent).move);
           return;
         case EndGameEvent.name:
-          this.showResult((event as EndGameEvent).winner);
+          this.endGame((event as EndGameEvent).winner);
           return;
         default:
           return;
@@ -70,7 +70,7 @@ export class OnlineModeComponent {
   }
 
   /// Service event handlers ---------------
-  private onError(event: OnlineModeErrorEvent) {
+  private onlineModeError(event: OnlineModeErrorEvent) {
     this.joinCode = '';
     this.alertService.showError(event.error, 'Close', () => {
       this.service.endGame();
@@ -93,7 +93,7 @@ export class OnlineModeComponent {
     this.board.updateMove(move);
   }
 
-  showResult(winner: Player) {
+  endGame(winner: Player) {
     this.subscription?.unsubscribe();
 
     this.alertService.showMessage(`Game Over! ${winner} wins!`, 'Close', () => {
@@ -108,16 +108,17 @@ export class OnlineModeComponent {
     this.service.makeMove(move);
   }
 
-  exitGame() {
+  onExitGame() {
     this.subscription?.unsubscribe();
     this.service.endGame();
     this.router.navigate(['/']);
   }
-  createGame() {
+
+  onCreateGame() {
     this.service.createGame();
   }
 
-  joinGame() {
+  onJoinGame() {
     if (!this.joinCode) return;
 
     this.service.joinGame(this.joinCode);

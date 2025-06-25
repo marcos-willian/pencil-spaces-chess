@@ -27,7 +27,7 @@ export class IframePageComponent {
       this.router.navigate(['/mainpage']);
     }
 
-    //As this service is used jus for ui updates, we can handle eventes here
+    //As this function is used just for ui updates, we can handle eventes here
     window.addEventListener('message', (event) => {
       switch (event.data.type) {
         case SetPlayerEvent.name:

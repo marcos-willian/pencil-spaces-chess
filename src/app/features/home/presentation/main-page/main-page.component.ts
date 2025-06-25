@@ -30,7 +30,8 @@ export class MainPageComponent {
         `${winner} won!!`,
         'New Game',
         () => {
-          this.startNewGame();
+          this.mainPageService.reset();
+
           return true;
         },
         'Close',
@@ -41,12 +42,12 @@ export class MainPageComponent {
     });
   }
 
-  startNewGame() {
-    this.mainPageService.reset();
-  }
-
   ngOnDestroy() {
     this.subscription?.unsubscribe();
+  }
+
+  onStartNewGame() {
+    this.mainPageService.reset();
   }
 
   onWhiteLoaded() {

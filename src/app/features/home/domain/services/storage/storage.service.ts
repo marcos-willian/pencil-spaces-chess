@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { MoveEvent } from '../main/inter-frame-game.events';
 import { Move } from '../../../../../shared/domain/models/move.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
-  private get _storageKey() {
-    return 'game-state';
-  }
+  private readonly _storageKey = 'game-state';
 
   constructor() {}
 
-  saveMove(move: Move) {
+  saveMove(move: Move): void {
     const value = JSON.stringify(move);
     localStorage.setItem(this._storageKey, value);
   }
