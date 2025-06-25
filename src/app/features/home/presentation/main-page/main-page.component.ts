@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { MainService } from '../../domain/services/main.service';
+import { MainService } from '../../domain/services/main/main.service';
 import { Subscription } from 'rxjs';
 
 @Component({

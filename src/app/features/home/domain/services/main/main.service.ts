@@ -3,10 +3,10 @@ import {
   MoveEvent,
   ResetEvent,
   SetPlayerEvent,
-} from '../models/chess-game-events';
-import { Player } from '../../../../shared/domain/models/player.model';
+} from './inter-frame-game.events';
+import { Player } from '../../../../../shared/domain/models/player.model';
 import { BehaviorSubject } from 'rxjs';
-import { StorageService } from './storage.service';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root',

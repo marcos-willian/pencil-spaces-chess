@@ -7,7 +7,7 @@ import {
   MoveEvent,
   ResetEvent,
   SetPlayerEvent,
-} from '../../domain/models/chess-game-events';
+} from '../../domain/services/main/inter-frame-game.events';
 import { Router } from '@angular/router';
 
 @Component({

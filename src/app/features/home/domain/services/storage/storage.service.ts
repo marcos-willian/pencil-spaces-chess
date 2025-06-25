@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MoveEvent } from '../models/chess-game-events';
-import { Move } from '../../../../shared/domain/models/move.model';
+import { MoveEvent } from '../main/inter-frame-game.events';
+import { Move } from '../../../../../shared/domain/models/move.model';
 
 @Injectable({
   providedIn: 'root',

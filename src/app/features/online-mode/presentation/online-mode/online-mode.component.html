@@ -5,8 +5,10 @@
     <button class="btn btn-primary mt-5" (click)="createGame()">Create New Game</button>
     <input class="form-control" style="width: 400px; margin-top: 80px;" [(ngModel)]="joinCode"
       placeholder="Enter game code" />
-    <button class="btn btn-primary mt-3" (click)="joinGame()">Join Game</button>
+    <button class="btn btn-primary mt-3" (click)="joinGame()" [disabled]="!joinCode">Join Game</button>
   </div>
   <app-chess-board #board [hidden]="!gameId" (onMove)="onMove($event)"></app-chess-board>
   <p [hidden]="!gameId" class="mt-5 fw-bold">Game code: {{ gameId }}</p>
+  <button class="btn btn-danger mt-3" (click)="exitGame()" [hidden]="!gameId">Exit Game</button>
+
 </div>
