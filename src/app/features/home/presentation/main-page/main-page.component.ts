@@ -23,23 +23,28 @@ export class MainPageComponent {
       this.mainPageService.eventHandler(event)
     );
     this.mainPageService.setPlayers(this.white, this.black);
+
     this.subscription = this.mainPageService.gameStatus$.subscribe((winner) => {
-      if (!winner) return;
-
-      this.alertService.showMessage(
-        `${winner} won!!`,
-        'New Game',
-        () => {
-          this.mainPageService.reset();
-
-          return true;
-        },
-        'Close',
-        () => {
-          return true;
-        }
-      );
+      this.gameStatusHandler(winner);
     });
+  }
+
+  gameStatusHandler(winner: string | null) {
+    if (!winner) return;
+
+    this.alertService.showMessage(
+      `${winner} won!!`,
+      'New Game',
+      () => {
+        this.mainPageService.reset();
+
+        return true;
+      },
+      'Close',
+      () => {
+        return true;
+      }
+    );
   }
 
   ngOnDestroy() {
