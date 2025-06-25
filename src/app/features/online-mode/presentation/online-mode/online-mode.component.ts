@@ -94,8 +94,10 @@ export class OnlineModeComponent {
   }
 
   showResult(winner: Player) {
-    this.service.endGame();
+    this.subscription?.unsubscribe();
+
     this.alertService.showMessage(`Game Over! ${winner} wins!`, 'Close', () => {
+      this.service.endGame();
       this.router.navigate(['/']);
       return true;
     });
