@@ -7,6 +7,7 @@
     <input class="form-control" style="width: 400px; margin-top: 80px;" [(ngModel)]="joinCode"
       placeholder="Enter game code" />
     <button class="btn btn-primary mt-3" (click)="joinGame()" [disabled]="!joinCode">Join Game</button>
+    <a class="btn btn-danger mt-3" routerLink="/mainpage">Back to Home</a>
   </div>
   <app-chess-board #board [hidden]="!gameId" (onMove)="onMove($event)"></app-chess-board>
   <p [hidden]="!gameId" class="mt-5 fw-bold">Game code: {{ gameId }}</p>
