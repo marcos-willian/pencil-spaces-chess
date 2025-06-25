@@ -5,7 +5,7 @@ import {
   RealtimeDbRepositoryToken,
 } from '../../repositories/realtime-db.repository';
 import { Move } from 'src/app/shared/domain/models/move.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import {
   EndGameEvent,
   OnlineModeErrorEvent,
@@ -21,6 +21,7 @@ export class OnlineModeService {
   private _gameId: string = '';
 
   private _player: Player | null = null;
+  private _subscription: Subscription | null = null;
 
   private _stateSubject = new BehaviorSubject<OnlineModeEvent>({ type: '' });
   readonly state$ = this._stateSubject.asObservable();
@@ -37,19 +38,21 @@ export class OnlineModeService {
       new UpdateGameInfoEvent({ gameId: this._gameId, player: this._player })
     );
 
-    this.dbRepository.joinGame(this._gameId).subscribe((move: Move) => {
-      if (move === null) {
-        return this._stateSubject.next(
-          new OnlineModeErrorEvent('Player left the game', true)
-        );
-      }
+    this._subscription = this.dbRepository
+      .joinGame(this._gameId)
+      .subscribe((move: Move) => {
+        if (move === null) {
+          return this._stateSubject.next(
+            new OnlineModeErrorEvent('Player left the game', true)
+          );
+        }
 
-      if (move.checkmate) {
-        return this._stateSubject.next(new EndGameEvent(move.player));
-      }
+        if (move.checkmate) {
+          return this._stateSubject.next(new EndGameEvent(move.player));
+        }
 
-      this._stateSubject.next(new UpdateMoveEvent(move));
-    });
+        this._stateSubject.next(new UpdateMoveEvent(move));
+      });
   }
 
   createGame(): void {
@@ -79,7 +82,11 @@ export class OnlineModeService {
   }
 
   endGame(): void {
-    this.dbRepository.endGame(this._gameId!);
+    if (this._gameId) {
+      this.dbRepository.endGame(this._gameId!);
+    }
+    this._subscription?.unsubscribe();
+    this._subscription = null;
     this._gameId = '';
     this._player = null;
     this._stateSubject.next({ type: '' });
